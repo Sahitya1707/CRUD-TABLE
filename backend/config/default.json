@@ -1,0 +1,4 @@
+{
+  "_comment": "In the config module for Node.js, the default.json file is one of the configuration files used to store default configuration settings for your application. This file is typically located in a directory named config in the root of your project.",
+  "MONGODB_URI": "${process.env.MONGODB_URI}"
+}
