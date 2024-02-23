@@ -1,4 +1,4 @@
-"";
+// "use client";
 import { Inter } from "next/font/google";
 
 import Header from "./components/Header";
@@ -16,9 +16,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Header />
         {/* <Header /> */}
-        {children}
+        <Header />
+        <main className="pl-[15rem] pt-[1rem]">{children}</main>
       </body>
     </html>
   );
