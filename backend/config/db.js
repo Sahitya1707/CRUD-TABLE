@@ -9,7 +9,7 @@ mongoose.set("strictQuery", true);
 const connectDB = async () => {
   try {
     // console.log(db);
-    // await mongoose.connect(db, {});
+    await mongoose.connect(db, {});
 
     console.log("MongoDb connected");
   } catch (err) {
