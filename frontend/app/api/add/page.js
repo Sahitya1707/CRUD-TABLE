@@ -4,28 +4,41 @@ import React, { useState } from "react";
 import PageHeading from "@/app/components/PageHeading";
 import { InputField, InputFile } from "@/app/components/InputField";
 import SubmitButton from "@/app/components/SubmitButton";
+import { BACKEND_URL } from "@/app/utils/Constant";
 
 const Add = () => {
-  const [formData, setformData] = useState({
+  const [inputFormData, setInputFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     contactNumber: "",
-    message: "",
+
     img: "",
   });
 
   const handleInput = (e) => {
     // console.log(e.target.value);
 
-    setformData({
-      ...formData,
+    setInputFormData({
+      ...inputFormData,
       [`${e.target.name}`]: e.target.value,
     });
   };
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e);
+    console.log(inputFormData);
+
+    await fetch(`${BACKEND_URL}add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(inputFormData),
+    }).then((res) => {
+      console.log(res);
+    });
   };
 
   return (
@@ -39,7 +52,7 @@ const Add = () => {
             type="text"
             inputName="First name"
             name="firstName"
-            value={formData.firstName}
+            value={inputFormData.firstName}
             placeholder={"Enter your first name"}
             handleInput={handleInput}
 
@@ -49,7 +62,7 @@ const Add = () => {
             type="text"
             inputName="Last name"
             name="lastName"
-            value={formData.lastName}
+            value={inputFormData.lastName}
             placeholder={"Enter your last name"}
             handleInput={handleInput}
 
@@ -59,7 +72,7 @@ const Add = () => {
             type="text"
             inputName=" Email Id"
             name="email"
-            value={formData.email}
+            value={inputFormData.email}
             placeholder={"Enter your mail id"}
             handleInput={handleInput}
 
@@ -69,13 +82,18 @@ const Add = () => {
             type="text"
             inputName=" Phone Number"
             name="contactNumber"
-            value={formData.contactNumber}
+            value={inputFormData.contactNumber}
             placeholder={"Enter your phone number"}
             handleInput={handleInput}
 
             // required={false}
           />
-          <InputFile accept="image/*" inputName="Enter the image" />
+          <InputFile
+            accept="image/*"
+            inputName="Choose Your image"
+            handleInput={handleInput}
+            name="img"
+          />
         </div>
 
         <SubmitButton name="Submit" handleSubmit={handleSubmit} />

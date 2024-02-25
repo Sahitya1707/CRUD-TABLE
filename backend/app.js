@@ -16,7 +16,7 @@ app.use(cors());
 //express.json is a middleware function used to parse in epress js
 app.use(express.json());
 
-app.use("api/table", tableRoute);
+app.use("/api/table", tableRoute);
 
 app.listen(port, () => {
   console.log(`App running on ${port}`);

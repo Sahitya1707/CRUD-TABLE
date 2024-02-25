@@ -5,15 +5,19 @@ const tableSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    name: {
+    firstName: {
       type: String,
       required: true,
     },
-    description: {
+    lastName: {
       type: String,
       required: true,
     },
-    author: {
+    emailId: {
+      type: String,
+      required: true,
+    },
+    contact: {
       type: String,
       required: true,
     },

@@ -35,7 +35,12 @@ export const InputFile = (props) => {
   return (
     <div>
       <InputHeading inputName={props.inputName} />
-      <input type="file" accept={props.accept} />
+      <input
+        type="file"
+        accept={props.accept}
+        onChange={props.handleInput}
+        name={props.name}
+      />
     </div>
   );
 };
