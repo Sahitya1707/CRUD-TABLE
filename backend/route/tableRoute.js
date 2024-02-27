@@ -6,7 +6,20 @@ const Table = require("../model/model");
 const multer = require("multer");
 // const upload = multer({ dest: "uploads/" });
 const path = require("path");
-const upload = multer({ dest: "./uploads" });
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads");
+  },
+  filename: function (req, file, cb) {
+    // console.log(file.mimetype);
+    // console.log(file.mimetype.split("/"));
+    // let extensionArray = file.mimetype.split('/')
+    // let extension = extensionArray[extensionArray.length -1]
+
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+const upload = multer({ storage: storage });
 
 router.post("/add", upload.single("img"), async (req, res) => {
   console.log(req.file);
