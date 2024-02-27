@@ -3,23 +3,23 @@ const tableSchema = new mongoose.Schema(
   {
     avatarImg: {
       type: String,
-      required: true,
+      // required: true,
     },
     firstName: {
       type: String,
-      required: true,
+      // required: true,
     },
     lastName: {
       type: String,
-      required: true,
+      // required: true,
     },
     emailId: {
       type: String,
-      required: true,
+      // required: true,
     },
     contact: {
       type: String,
-      required: true,
+      // required: true,
     },
   },
   {
