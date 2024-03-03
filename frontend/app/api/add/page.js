@@ -19,9 +19,6 @@ const Add = () => {
   const [emptyInputField, setEmptyInputField] = useState(false);
   const { firstName, lastName, email, contactNumber, img } = inputFormData;
   const handleInput = (e) => {
-    // console.log(e.target.value);
-
-    // if()
     setEmptyInputField(false);
     setInputFormData({
       ...inputFormData,
