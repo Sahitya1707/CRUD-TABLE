@@ -3,7 +3,7 @@ require("dotenv").config();
 // creates an express application
 const app = express();
 const cors = require("cors");
-
+const path = require("path");
 const connectDB = require("./config/db.js");
 connectDB();
 // path to route
@@ -17,7 +17,7 @@ const port = process.env.PORT || 301;
 app.use(cors());
 //express.json is a middleware function used to parse in epress js
 app.use(express.json());
-
+app.use("/api/table/images", express.static(path.join(__dirname, "uploads")));
 app.use("/api/table", tableRoute);
 
 app.listen(port, () => {

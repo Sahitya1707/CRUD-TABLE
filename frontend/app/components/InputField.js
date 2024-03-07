@@ -40,6 +40,7 @@ export const InputFile = (props) => {
         accept={props.accept}
         onChange={props.handleInput}
         name={props.name}
+        // value={props.value}
       />
     </div>
   );

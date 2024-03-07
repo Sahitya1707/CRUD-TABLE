@@ -14,7 +14,7 @@ const Add = () => {
     lastName: "",
     email: "",
     contactNumber: "",
-    img: null,
+    img: "",
   });
   const [emptyInputField, setEmptyInputField] = useState(false);
   const { firstName, lastName, email, contactNumber, img } = inputFormData;
@@ -45,10 +45,18 @@ const Add = () => {
       formData.append("contactNumber", contactNumber);
       formData.append("img", img);
       await axios.post(`${BACKEND_URL}add`, formData).then((res) => {
-        console.log(res);
+        setInputFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          contactNumber: "",
+          img: "",
+        });
+        console.log(inputFormData);
       });
     }
   };
+  console.log(inputFormData);
 
   return (
     <section>
@@ -101,6 +109,7 @@ const Add = () => {
 
             // required={false}
           />
+          {/* In React, an <input type="file" /> is always an uncontrolled component because its value can only be set by a user, and not programmatically. */}
           <InputFile
             accept="image/*"
             inputName="Choose Your image"

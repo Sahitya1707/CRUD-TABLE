@@ -8,6 +8,7 @@ const multer = require("multer");
 const path = require("path");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
+    // console.log(req, file);
     cb(null, "uploads");
   },
   filename: function (req, file, cb) {
@@ -22,8 +23,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post("/add", upload.single("img"), async (req, res) => {
-  console.log(req.file);
-
   const { firstName, lastName, email, contactNumber, img } = req.body;
 
   const newTable = new Table({
@@ -43,16 +42,15 @@ router.post("/add", upload.single("img"), async (req, res) => {
         console.log(err);
       }
     });
-  //   console.log(newTable);
-  //   newTable.save().then((success) => {
-  //     return res.status(200).json({ message: "book has been saved." });
-  //   });
-  await console.log(`Add route has been reached.`);
-  try {
-    console.log(`hi`);
-  } catch (err) {
-    console.log(err);
-  }
 });
-
+router.get("/get", (req, res) => {
+  // console.log("get method");
+  Table.find()
+    .then((data) => {
+      return res.status(200).json({ data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 module.exports = router;

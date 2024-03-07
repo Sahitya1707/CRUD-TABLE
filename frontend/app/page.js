@@ -1,6 +1,20 @@
+"use client";
+import { useEffect, useState } from "react";
 import { TableData, TableHeading } from "./components/Table";
+import { BACKEND_URL } from "./utils/Constant";
+import axios from "axios";
 
 export default function Home() {
+  const [data, setData] = useState({});
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(`${BACKEND_URL}get`);
+      console.log(response.data);
+      setData(response);
+    };
+    fetchData();
+  }, []);
+
   return (
     <section className="">
       {/* Need to add filter and all those features will be over here */}
@@ -16,13 +30,30 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <TableData tableData="Sahitya" />
-              <TableData tableData="Neupane" />
-              <TableData tableImg="/logo.png" imgDesc="image" />
-              <TableData tableData="neupanesahitya1@gmail.com" />
-              <TableData tableData="+1 (647) 9191-1596" />
-            </tr>
+            {data &&
+              data?.data?.data.map((e) => {
+                console.log(e);
+                const {
+                  _id,
+                  firstName,
+                  lastName,
+                  avatarImg,
+                  emailId,
+                  contact,
+                } = e;
+                return (
+                  <tr key={_id}>
+                    <TableData tableData={firstName} />
+                    <TableData tableData={lastName} />
+                    <TableData
+                      tableImg={`${BACKEND_URL}images/${avatarImg}`}
+                      imgDesc="image"
+                    />
+                    <TableData tableData={emailId} />
+                    <TableData tableData={contact} />
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
