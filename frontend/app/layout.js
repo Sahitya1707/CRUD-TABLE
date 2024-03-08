@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
       <body>
         {/* <Header /> */}
         <Header />
-        <main className="pl-[15rem] pt-[1rem]">{children}</main>
+        <main className="pl-[15rem] pt-[5rem]">{children}</main>
       </body>
     </html>
   );

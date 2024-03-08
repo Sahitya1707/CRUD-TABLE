@@ -26,6 +26,9 @@ export default function Home() {
         <table className="border-2 border-solid border-black mx-auto my-2">
           <thead>
             <tr className="border-2 border-solid border-black ">
+              <th className="border-2 border-solid border-black px-2 uppercase w-[4rem] tracking-wider text-left">
+                S.N
+              </th>
               <TableHeading tableHeading="First Name" />
               <TableHeading tableHeading="Last Name" />
               <TableHeading tableHeading="Image" />
@@ -35,8 +38,7 @@ export default function Home() {
           </thead>
           <tbody>
             {data &&
-              data?.data?.data.map((e) => {
-                console.log(e);
+              data?.data?.data.map((e, i) => {
                 const {
                   _id,
                   firstName,
@@ -47,6 +49,7 @@ export default function Home() {
                 } = e;
                 return (
                   <tr key={_id}>
+                    <TableData tableData={`${i + 1}.`} />
                     <TableData tableData={firstName} />
                     <TableData tableData={lastName} />
                     <TableData

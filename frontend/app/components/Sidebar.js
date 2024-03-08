@@ -15,7 +15,7 @@ const Sidebar = () => {
           <SidebarButton name=" Add" icon={`+`} link="/api/add" />
 
           <SidebarButton name=" Setting" icon={<IoMdSettings />} />
-          <SidebarButton name=" Edit" icon={<MdEdit />} />
+          <SidebarButton name=" Edit" icon={<MdEdit />} link="/api/edit" />
         </ul>
       </div>
     </section>
