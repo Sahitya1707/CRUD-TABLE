@@ -17,9 +17,13 @@ export default function Home() {
 
   return (
     <section className="">
+      <h2 className="uppercase text-center text-2xl font-semibold tracking-wider my-2 text-[#141630]">
+        Our DAta
+      </h2>
+
       {/* Need to add filter and all those features will be over here */}
       <div>
-        <table className="border-2 border-solid border-black mx-auto">
+        <table className="border-2 border-solid border-black mx-auto my-2">
           <thead>
             <tr className="border-2 border-solid border-black ">
               <TableHeading tableHeading="First Name" />

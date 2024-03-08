@@ -1,6 +1,7 @@
 import React from "react";
 import { IoHome } from "react-icons/io5";
 import { IoMdSettings } from "react-icons/io";
+import { MdEdit } from "react-icons/md";
 import SidebarButton from "./SidebarButton";
 
 const Sidebar = () => {
@@ -14,6 +15,7 @@ const Sidebar = () => {
           <SidebarButton name=" Add" icon={`+`} link="/api/add" />
 
           <SidebarButton name=" Setting" icon={<IoMdSettings />} />
+          <SidebarButton name=" Edit" icon={<MdEdit />} />
         </ul>
       </div>
     </section>

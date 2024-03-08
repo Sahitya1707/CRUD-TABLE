@@ -18,7 +18,7 @@ export const TableData = (props) => {
           {tableData}
         </td>
       ) : (
-        <td className=" ">
+        <td className=" border-2 border-solid border-black px-2">
           {" "}
           <img
             src={tableImg}
