@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { TableData, TableHeading } from "./components/Table";
 import { BACKEND_URL } from "./utils/Constant";
 import axios from "axios";
+import Shimmer from "./components/Shimmer";
 
 export default function Home() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(`${BACKEND_URL}get`);
@@ -14,7 +15,9 @@ export default function Home() {
     };
     fetchData();
   }, []);
-
+  if (data === null) {
+    return <Shimmer />;
+  }
   return (
     <section className="">
       <h2 className="uppercase text-center text-2xl font-semibold tracking-wider my-2 text-[#141630]">

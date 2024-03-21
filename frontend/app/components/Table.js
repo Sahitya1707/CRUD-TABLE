@@ -7,6 +7,13 @@ export const TableHeading = (props) => {
     </th>
   );
 };
+export const ShortTableHeading = (props) => {
+  return (
+    <th className="border-2 border-solid border-black px-2 uppercase w-[4rem] tracking-wider text-left">
+      {props.tableHeading}
+    </th>
+  );
+};
 export const TableData = (props) => {
   const { tableData, tableImg, imgDesc } = props;
 
