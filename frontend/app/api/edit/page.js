@@ -3,6 +3,7 @@ import PageHeading from "@/app/components/PageHeading";
 import Shimmer from "@/app/components/Shimmer";
 import SubmitButton from "@/app/components/SubmitButton";
 import {
+  ActionIcon,
   ShortTableHeading,
   TableData,
   TableHeading,
@@ -10,7 +11,8 @@ import {
 import { BACKEND_URL } from "@/app/utils/Constant";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import { MdDelete } from "react-icons/md";
+import { CiEdit } from "react-icons/ci";
 const Edit = () => {
   const [data, setData] = useState(null);
   useEffect(() => {
@@ -20,12 +22,19 @@ const Edit = () => {
     };
     fetchData();
   }, []);
-  console.log(data);
+  const [checked, setChecked] = useState([]);
+
+  const handleDelete = (id) => {
+    console.log(id);
+  };
+  const handleEdit = (id) => {
+    console.log(id);
+  };
   if (data === null) return <Shimmer />;
   return (
     <>
       <PageHeading heading="edit" />
-      <div className="flex w-[17rem] items-center my-4">
+      <div className="flex w-[17rem] items-center my-4 ">
         <p className="uppercase mx-2">Search:</p>
         <input
           type="text"
@@ -33,10 +42,10 @@ const Edit = () => {
           placeholder="Search By Name"
         />
       </div>
-      <div>
-        <table>
+      <div className="flex justify-center">
+        <table className="m-2 ">
           <thead>
-            <tr>
+            <tr className="">
               <ShortTableHeading tableHeading="-" />
               <ShortTableHeading tableHeading="S.N" />
               <TableHeading tableHeading="First Name" />
@@ -44,7 +53,7 @@ const Edit = () => {
               <TableHeading tableHeading="Image" />
               <TableHeading tableHeading="Email" />
               <TableHeading tableHeading="Phone Number" />
-              <TableHeading tableHeading="Edit" />
+              <TableHeading tableHeading="Action" />
             </tr>
           </thead>
           <tbody>
@@ -58,9 +67,12 @@ const Edit = () => {
                   emailId,
                   contact,
                 } = e;
-                console.log(e);
+
                 return (
-                  <tr key={_id}>
+                  <tr
+                    key={_id}
+                    className="hover:bg-[#8080804b] hover:cursor-pointer hover:duration-75 hover:ease-in"
+                  >
                     <td className="border-solid border-2 border-black">
                       <input
                         type="checkbox"
@@ -68,7 +80,8 @@ const Edit = () => {
                         className="mx-auto w-full "
                       />
                     </td>
-                    <td className="border-solid border-2 border-black">{i}</td>
+
+                    <TableData tableData={i + 1} />
                     <TableData tableData={firstName} />
                     <TableData tableData={lastName} />
                     <TableData
@@ -77,6 +90,25 @@ const Edit = () => {
                     />
                     <TableData tableData={emailId} />
                     <TableData tableData={contact} />
+                    <td className="border-2 border-black border-solid ">
+                      <span className="flex items-center justify-center gap-x-4">
+                        <ActionIcon
+                          color="red"
+                          icon={<MdDelete />}
+                          // dataId={_id}
+                          handleClick={(e) => {
+                            handleDelete(_id);
+                          }}
+                        />
+                        <ActionIcon
+                          color="blue"
+                          icon={<CiEdit />}
+                          handleClick={(e) => {
+                            handleEdit(_id);
+                          }}
+                        />
+                      </span>
+                    </td>
                   </tr>
                 );
               })}

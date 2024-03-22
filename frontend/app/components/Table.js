@@ -1,15 +1,15 @@
 import Image from "next/image";
-
+import { MdDelete } from "react-icons/md";
 export const TableHeading = (props) => {
   return (
-    <th className="border-2 border-solid border-black px-2 uppercase w-[12rem] tracking-wider text-left">
+    <th className="border-2 border-solid border-black  uppercase w-[12rem] tracking-wider text-center">
       {props.tableHeading}
     </th>
   );
 };
 export const ShortTableHeading = (props) => {
   return (
-    <th className="border-2 border-solid border-black px-2 uppercase w-[4rem] tracking-wider text-left">
+    <th className="border-2 border-solid border-black  uppercase w-[4rem] tracking-wider text-center">
       {props.tableHeading}
     </th>
   );
@@ -20,7 +20,7 @@ export const TableData = (props) => {
   return (
     <>
       {tableData ? (
-        <td className="border-2 border-solid border-black px-2">
+        <td className="border-2 border-solid border-black text-center">
           {" "}
           {tableData}
         </td>
@@ -53,5 +53,21 @@ export const TableData = (props) => {
         // <></>
       )}
     </>
+  );
+};
+export const ActionIcon = (props) => {
+  const { color, icon, handleClick, idValue } = props;
+  console.log(props);
+  return (
+    <span
+      className={`text-2xl text-[${color}]`}
+      onClick={(idValue) => {
+        handleClick(idValue);
+      }}
+      // dataId={idValue}
+    >
+      {/* <Icon /> */}
+      {icon}
+    </span>
   );
 };
